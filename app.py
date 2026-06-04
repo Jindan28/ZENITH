@@ -25,17 +25,8 @@ def calculate_bmi(event):
         age = int(age_input)
         weight = float(weight_input)
         height_cm = float(height_input)
-        
-        # 2. Validasi batas usia minimal
-        if age < 18:
-            result_bmi.innerText = "!"
-            result_status.innerText = "Usia di Bawah Rentang"
-            result_status.style.color = "#fd7e14"
-            result_card.style.borderLeft = "5px solid #fd7e14"
-            result_desc.innerText = "Kalkulator Standar WHO ini dioptimalkan untuk orang dewasa berusia 18 tahun ke atas. Pola pertumbuhan anak/remaja memerlukan grafik persentil khusus."
-            return
 
-        # 3. Rumus Hitung Nilai BMI (Tinggi badan dikonversi dari cm ke meter)
+        # 2. Rumus Hitung Nilai BMI (Tinggi badan dikonversi dari cm ke meter)
         height_m = height_cm / 100
         bmi = weight / (height_m * height_m)
         bmi_rounded = round(bmi, 1)
@@ -43,7 +34,7 @@ def calculate_bmi(event):
         # Tampilkan angka skor BMI
         result_bmi.innerText = str(bmi_rounded)
         
-        # 4. Pengkondisian Kategori Kesehatan, Warna Teks, dan Border Samping Kotak
+        # 3. Pengkondisian Kategori Kesehatan, Warna Teks, dan Border Samping Kotak
         if bmi_rounded < 18.5:
             result_status.innerText = "Kurang Berat Badan (Underweight)"
             result_status.style.color = "#ffc107"  # Warna Kuning Emas
