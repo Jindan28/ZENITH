@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenith Website</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+    <nav>
+        <a href="dashboard.html" class="brand-logo">
+            <h1>ZENITH</h1>
+        </a>
+        
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="navLinks">
+            <a href="dashboard.html">Home</a>
+            <a href="design.html">Design</a>
+            <a href="index.html">Product</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Welcome to Zenith</h1>
+        <p>Creative Digital Experience</p>
+
+        <div class="dropdown">
+            <button class="btn" id="dropBtn">
+                Explore <span class="arrow">&#9662;</span>
+            </button>
+            <div class="dropdown-content" id="myDropdown">
+                <a href="dashboard.html">Go to Dashboard</a>
+                <div class="dropdown-divider"></div>
+                <a href="index.html">Product</a>
+                <a href="design.html">Design</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="card">
+            <h2>Creative</h2>
+            <p>Ide kreatif tanpa batas</p>
+        </div>
+
+        <div class="card">
+            <h2>Modern</h2>
+            <p>Design kekinian & elegan</p>
+        </div>
+
+        <div class="card">
+            <h2>Teamwork</h2>
+            <p>Kerja sama solid & kuat</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Zenith Team</p>
+    </footer>
+
+    <script>
+        // --- 1. OTOMATIS DETEKSI HALAMAN AKTIF ---
+        // Kode ini membaca URL browser dan otomatis menyalakan menu yang sesuai
+        const currentUrl = window.location.pathname;
+        const navLinksArray = document.querySelectorAll('nav .nav-links a');
+        
+        navLinksArray.forEach(link => {
+            const hrefAttr = link.getAttribute('href');
+            if (currentUrl.endsWith(hrefAttr) || (hrefAttr === 'dashboard.html' && currentUrl === '/')) {
+                link.classList.add('active');
+            }
+        });
+
+        // --- 2. LOGIKA DROPDOWN "EXPLORE" ---
+        const dropBtn = document.getElementById("dropBtn");
+        const myDropdown = document.getElementById("myDropdown");
+
+        dropBtn.addEventListener("click", function(event) {
+            event.stopPropagation();
+            myDropdown.classList.toggle("show");
+            dropBtn.classList.toggle("active");
+        });
+
+        // --- 3. LOGIKA HAMBURGER MENU (MOBILE) ---
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", function(event) {
+            event.stopPropagation();
+            menuToggle.classList.toggle("active");
+            navLinks.classList.toggle("active");
+        });
+
+        // --- 4. KLIK DI LUAR UNTUK MENUTUP ELEMEN ---
+        window.addEventListener("click", function(event) {
+            // Tutup Dropdown jika klik di luar area dropdown
+            if (!myDropdown.contains(event.target) && event.target !== dropBtn) {
+                myDropdown.classList.remove("show");
+                dropBtn.classList.remove("active");
+            }
+            // Tutup Hamburger Menu jika klik di luar area navbar
+            if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
+                menuToggle.classList.remove("active");
+                navLinks.classList.remove("active");
+            }
+        });
+    </script>
+
+</body>
+</html>
