@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zenith Website</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
+    <link rel="stylesheet" href="index.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 </head>
 
 <body>
@@ -24,74 +25,107 @@
         </button>
 
         <div class="nav-links" id="navLinks">
-            <a href="dashboard.html">Home</a>
+            <a href="index.html">Home</a>
             <a href="design.html">Design</a>
-            <a href="index.html">Product</a>
+            <a href="dashboard.html">Product</a>
         </div>
     </nav>
 
-    <section class="hero">
-        <h1>Welcome to Zenith</h1>
-        <p>Creative Digital Experience</p>
+    <main>
+        <div>
+            <section>
+                <h2>Kalkulator BMI</h2>
+                <p>Hitung indeks massa tubuh (BMI) Anda secara aman dan real-time menggunakan modul eksekusi PyScript langsung di dalam browser.</p>
+                <form onsubmit="return false;">
+                    
+                    <div class="form-row-parallel">
+                        <div class="form-group">
+                            <label for="input-usia">Usia (Tahun)</label>
+                            <input type="number" id="input-usia" placeholder="Contoh : 18" min="18" max="120">
+                        </div>
 
-        <div class="dropdown">
-            <button class="btn" id="dropBtn">
-                Explore <span class="arrow">&#9662;</span>
-            </button>
-            <div class="dropdown-content" id="myDropdown">
-                <a href="dashboard.html">Go to Dashboard</a>
-                <div class="dropdown-divider"></div>
-                <a href="index.html">Product</a>
-                <a href="design.html">Design</a>
-            </div>
-        </div>
-    </section>
+                        <div class="form-group">
+                            <label>Jenis Kelamin</label>
+                            <div class="gender-card-group">
+                                <label class="gender-card-label">
+                                    <input type="radio" name="gender" id="gender-pria" value="pria" checked>
+                                    <div class="gender-card-custom">Pria</div>
+                                </label>
+                                <label class="gender-card-label">
+                                    <input type="radio" name="gender" id="gender-wanita" value="wanita">
+                                    <div class="gender-card-custom">Wanita</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="input-berat-badan">Berat Badan (kg)</label>
+                        <input type="number" id="input-berat-badan" placeholder="Contoh: 65" min="1">
+                    </div>
 
-    <div class="container">
-        <div class="card">
-            <h2>Creative</h2>
-            <p>Ide kreatif tanpa batas</p>
+                    <div class="form-group">
+                        <label for="input-tinggi-badan">Tinggi Badan (cm)</label>
+                        <input type="number" id="input-tinggi-badan" placeholder="Contoh: 170" min="1">
+                    </div>
+
+                    <div class="btn-container">
+                        <button type="button" class="btn btn-primary" py-click="calculate_bmi">Hitung</button> 
+                        <button type="button" class="btn btn-secondary" py-click="reset_form">Reset</button> 
+                    </div>
+
+                    <div class="navigation-container">
+                        <a href="index.html" class="btn btn-outline-dashboard">&larr; Back to Dashboard</a>
+                    </div>
+                </form>
+            </section>
         </div>
 
-        <div class="card">
-            <h2>Modern</h2>
-            <p>Design kekinian & elegan</p>
+        <div>
+            <section>
+                <h2>Hasil BMI Anda</h2>
+                <div class="result-box" id="result-card">
+                    <div class="result-bmi" id="result-bmi">-</div>
+                    <div class="result-status" id="result-status">Silakan masukkan data Anda.</div>
+                </div>
+                <p id="result-desc">Gunakan kalkulator di samping untuk mengetahui indeks massa tubuh ideal Anda berdasarkan standar WHO.</p>
+                
+                <div class="who-scale">
+                    <div class="scale-title">Skala Referensi Kesehatan (WHO)</div>
+                    <div class="scale-bar">
+                        <div class="bar-segment bg-under"></div>
+                        <div class="bar-segment bg-ideal"></div>
+                        <div class="bar-segment bg-over"></div>
+                        <div class="bar-segment bg-obese"></div>
+                    </div>
+                    <div class="scale-labels">
+                        <span>&lt; 18.5<br>Kurang</span>
+                        <span>18.5 - 24.9<br>Ideal</span>
+                        <span>25.0 - 29.9<br>Lebih</span>
+                        <span>&ge; 30.0<br>Obesitas</span>
+                    </div>
+                </div>
+            </section>
         </div>
-
-        <div class="card">
-            <h2>Teamwork</h2>
-            <p>Kerja sama solid & kuat</p>
-        </div>
-    </div>
+    </main>
 
     <footer>
-        <p>&copy; 2026 Zenith Team</p>
+        <p>&copy; 2026 Zenith Team. All rights reserved.</p>
     </footer>
 
     <script>
         // --- 1. OTOMATIS DETEKSI HALAMAN AKTIF ---
-        // Kode ini membaca URL browser dan otomatis menyalakan menu yang sesuai
         const currentUrl = window.location.pathname;
         const navLinksArray = document.querySelectorAll('nav .nav-links a');
         
         navLinksArray.forEach(link => {
             const hrefAttr = link.getAttribute('href');
-            if (currentUrl.endsWith(hrefAttr) || (hrefAttr === 'dashboard.html' && currentUrl === '/')) {
+            if (currentUrl.endsWith(hrefAttr)) {
                 link.classList.add('active');
             }
         });
 
-        // --- 2. LOGIKA DROPDOWN "EXPLORE" ---
-        const dropBtn = document.getElementById("dropBtn");
-        const myDropdown = document.getElementById("myDropdown");
-
-        dropBtn.addEventListener("click", function(event) {
-            event.stopPropagation();
-            myDropdown.classList.toggle("show");
-            dropBtn.classList.toggle("active");
-        });
-
-        // --- 3. LOGIKA HAMBURGER MENU (MOBILE) ---
+        // --- 2. LOGIKA HAMBURGER MENU (MOBILE) ---
         const menuToggle = document.getElementById("menuToggle");
         const navLinks = document.getElementById("navLinks");
 
@@ -101,14 +135,8 @@
             navLinks.classList.toggle("active");
         });
 
-        // --- 4. KLIK DI LUAR UNTUK MENUTUP ELEMEN ---
+        // --- 3. KLIK DI LUAR UNTUK MENUTUP NAVBAR MOBILE ---
         window.addEventListener("click", function(event) {
-            // Tutup Dropdown jika klik di luar area dropdown
-            if (!myDropdown.contains(event.target) && event.target !== dropBtn) {
-                myDropdown.classList.remove("show");
-                dropBtn.classList.remove("active");
-            }
-            // Tutup Hamburger Menu jika klik di luar area navbar
             if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
                 menuToggle.classList.remove("active");
                 navLinks.classList.remove("active");
@@ -116,5 +144,6 @@
         });
     </script>
 
+    <script type="py" src="app.py"></script>
 </body>
 </html>
