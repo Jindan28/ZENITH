@@ -1,47 +1,149 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenith Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
+    <link rel="stylesheet" href="css/index.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+</head>
 
-<html>
-    <head>
-        <meta charset="utf-8">
+<body>
 
-        <title>Blank template</title>
-
-        <!-- Load external CSS styles -->
-        <link rel="stylesheet" href="styles.css">
-
-    </head>
-
-    <body>
-
-        <h1>ZENITH </h1>
-        <ul>
-            <li>home</li>
-            <li>design</li>
-            <li>product</li>
-        </ul>
-      
-        <p>Hallo semua kami dari kelompok Zenith Yang beranggotakan 4 orang :
-            <br>1.Danang Fahrizi 
-            <br>2.Fahri Ahmad Razan 
-            <br>3.Muhammad Jindan Al nesta 
-            <br>4.Riswandi 
-
-<div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
- padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
- border-radius: 8px; will-change: transform;">
-  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-    src="https://www.canva.com/design/DAHHG69h7SQ/ZSvgwhlyY2-Zmp_QURDZcg/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-  </iframe>
-</div>
-<a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAHHG69h7SQ&#x2F;ZSvgwhlyY2-Zmp_QURDZcg&#x2F;view?utm_content=DAHHG69h7SQ&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">Biru Kuning dan Hijau Ilustrasi Deflasi Negara Presentation</a> oleh Jindan Alnesta
-
-<marquee>Design By Duns Gallagher </marquee>
-        </p>
-        <p>
-
-        <!-- Load external JavaScript -->
-        <script src="scripts.js"></script>
+    <nav>
+        <a href="dashboard.html" class="brand-logo">
+            <h1>ZENITH</h1>
+        </a>
         
-    </body>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
 
+        <div class="nav-links" id="navLinks">
+            <a href="dashboard.html">Home</a>
+            <a href="design.html">Design</a>
+            <a href="index.html">Product</a>
+        </div>
+    </nav>
+
+    <main>
+        <div>
+            <section>
+                <h2>Kalkulator BMI</h2>
+                <p>Hitung indeks massa tubuh (BMI) Anda secara aman dan real-time menggunakan modul eksekusi PyScript langsung di dalam browser.</p>
+                <form onsubmit="return false;">
+                    
+                    <div class="form-row-parallel">
+                        <div class="form-group">
+                            <label for="input-usia">Usia (Tahun)</label>
+                            <input type="number" id="input-usia" placeholder="Contoh : 18" min="18" max="120">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Jenis Kelamin</label>
+                            <div class="gender-card-group">
+                                <label class="gender-card-label">
+                                    <input type="radio" name="gender" id="gender-pria" value="pria" checked>
+                                    <div class="gender-card-custom">Pria</div>
+                                </label>
+                                <label class="gender-card-label">
+                                    <input type="radio" name="gender" id="gender-wanita" value="wanita">
+                                    <div class="gender-card-custom">Wanita</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="input-berat-badan">Berat Badan (kg)</label>
+                        <input type="number" id="input-berat-badan" placeholder="Contoh: 65" min="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="input-tinggi-badan">Tinggi Badan (cm)</label>
+                        <input type="number" id="input-tinggi-badan" placeholder="Contoh: 170" min="1">
+                    </div>
+
+                    <div class="btn-container">
+                        <button type="button" class="btn btn-primary" py-click="calculate_bmi">Hitung</button> 
+                        <button type="button" class="btn btn-secondary" py-click="reset_form">Reset</button> 
+                    </div>
+
+                    <div class="navigation-container">
+                        <a href="dashboard.html" class="btn btn-outline-dashboard">&larr; Back to Dashboard</a>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <div>
+            <section>
+                <h2>Hasil BMI Anda</h2>
+                <div class="result-box" id="result-card">
+                    <div class="result-bmi" id="result-bmi">-</div>
+                    <div class="result-status" id="result-status">Silakan masukkan data Anda.</div>
+                </div>
+                <p id="result-desc">Gunakan kalkulator di samping untuk mengetahui indeks massa tubuh ideal Anda berdasarkan standar WHO.</p>
+                
+                <div class="who-scale">
+                    <div class="scale-title">Skala Referensi Kesehatan (WHO)</div>
+                    <div class="scale-bar">
+                        <div class="bar-segment bg-under"></div>
+                        <div class="bar-segment bg-ideal"></div>
+                        <div class="bar-segment bg-over"></div>
+                        <div class="bar-segment bg-obese"></div>
+                    </div>
+                    <div class="scale-labels">
+                        <span>&lt; 18.5<br>Kurang</span>
+                        <span>18.5 - 24.9<br>Ideal</span>
+                        <span>25.0 - 29.9<br>Lebih</span>
+                        <span>&ge; 30.0<br>Obesitas</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Zenith Team. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // --- 1. OTOMATIS DETEKSI HALAMAN AKTIF ---
+        const currentUrl = window.location.pathname;
+        const navLinksArray = document.querySelectorAll('nav .nav-links a');
+        
+        navLinksArray.forEach(link => {
+            const hrefAttr = link.getAttribute('href');
+            if (currentUrl.endsWith(hrefAttr)) {
+                link.classList.add('active');
+            }
+        });
+
+        // --- 2. LOGIKA HAMBURGER MENU (MOBILE) ---
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", function(event) {
+            event.stopPropagation();
+            menuToggle.classList.toggle("active");
+            navLinks.classList.toggle("active");
+        });
+
+        // --- 3. KLIK DI LUAR UNTUK MENUTUP NAVBAR MOBILE ---
+        window.addEventListener("click", function(event) {
+            if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
+                menuToggle.classList.remove("active");
+                navLinks.classList.remove("active");
+            }
+        });
+    </script>
+
+    <script type="py" src="python/app.py"></script>
+</body>
 </html>
