@@ -1,0 +1,311 @@
+/* --- RESET & BASE STYLES --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* --- MODERN NAVBAR WITH GLASSMORPHISM --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(30, 60, 114, 0.3); 
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.4s ease;
+}
+
+nav .brand-logo {
+    text-decoration: none;
+}
+
+nav h1 {
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: #ffffff; 
+}
+
+nav .nav-links {
+    display: flex;
+    align-items: center;
+}
+
+nav .nav-links a {
+    margin-left: 35px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.65);
+    transition: color 0.3s ease;
+    font-size: 15px;
+    font-weight: 400;
+    position: relative;
+    padding: 5px 0;
+}
+
+nav .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #00f2fe, #4facfe);
+    transition: width 0.3s ease;
+}
+
+nav .nav-links a:hover::after,
+nav .nav-links a.active::after {
+    width: 100%;
+}
+
+nav .nav-links a:hover,
+nav .nav-links a.active {
+    color: #00f2fe;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.menu-toggle .bar {
+    height: 2px;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    margin-top: 100px;
+    text-align: center;
+    padding: 60px 20px 30px 20px;
+    animation: fadeIn 1.5s ease;
+}
+
+.hero h1 {
+    font-size: 45px;
+    background: linear-gradient(90deg, #fff, #00f2fe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    margin: 10px 0 25px 0;
+    opacity: 0.8;
+}
+
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 30px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.4s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-back:hover {
+    transform: translateX(-5px);
+    background: linear-gradient(90deg, #00f2fe, #4facfe);
+    border-color: transparent;
+    box-shadow: 0 4px 20px rgba(0, 242, 254, 0.4);
+}
+
+/* --- VERTICAL STACK CONTAINER --- */
+.showcase-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 80px; /* Jarak renggang vertikal yang pas untuk presentasi */
+    max-width: 1000px;
+    margin: 0 auto 120px auto;
+    padding: 0 25px;
+    position: relative;
+    animation: fadeIn 2s ease;
+}
+
+/* Efek Glow menyebar di belakang susunan kartu */
+.showcase-stack::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 15%;
+    width: 70%;
+    height: 80%;
+    background: linear-gradient(135deg, #00f2fe, #4facfe);
+    filter: blur(160px);
+    opacity: 0.15;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Card Presentasi */
+.showcase-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Bagian Judul Slide & Nomor */
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.slide-number {
+    font-size: 24px;
+    font-weight: 600;
+    background: linear-gradient(90deg, #00f2fe, #4facfe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.showcase-card h3 {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+}
+
+/* Wrapper Utama Bingkai PPT */
+.canva-wrapper {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 56.25%; /* Rasio Aspek 16:9 */
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.5s ease;
+}
+
+/* Efek Interaktif (Hover Lift & Glow) */
+.canva-wrapper:hover {
+    transform: translateY(-10px) scale(1.01);
+    box-shadow: 0 40px 80px rgba(0, 242, 254, 0.25), 
+                0 20px 45px rgba(0, 0, 0, 0.5);
+}
+
+.canva-wrapper iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border: none;
+}
+
+/* --- FOOTER --- */
+    footer {
+    text-align: center;
+    padding: 30px;
+    opacity: 0.7;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- MEDIA QUERIES (RESPONSIVE HP) --- */
+@media(max-width: 768px) {
+    .hero h1 { 
+        font-size: 32px; 
+    }
+    
+    nav { 
+        padding: 15px 6%; 
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    nav .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 75%;
+        height: 100vh;
+        background: rgba(18, 38, 74, 0.96);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        gap: 35px;
+        transition: right 0.4s cubic-bezier(0.85, 0, 0.15, 1);
+        box-shadow: -10px 0 30px rgba(0,0,0,0.3);
+    }
+
+    nav .nav-links.active {
+        right: 0;
+    }
+
+    nav .nav-links a {
+        margin-left: 0;
+        font-size: 20px;
+    }
+
+    .showcase-stack {
+        gap: 50px; /* Sedikit lebih rapat di mobile agar tidak terlalu lelah scroll */
+        padding: 0 15px;
+    }
+    
+    .canva-wrapper {
+        border-radius: 16px;
+    }
+}

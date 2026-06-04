@@ -1,0 +1,460 @@
+/* --- RESET & BASE STYLES --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* --- MODERN NAVBAR WITH GLASSMORPHISM --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    position: fixed; /* Membuat navbar melayang tetap di atas */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(30, 60, 114, 0.3); 
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.4s ease;
+}
+
+nav .brand-logo {
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+nav .brand-logo:hover {
+    opacity: 0.85;
+}
+
+/* Logo Putih Solid Bersih */
+nav h1 {
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    font-size: 26px;
+    color: #ffffff; 
+}
+
+nav .nav-links {
+    display: flex;
+    align-items: center;
+}
+
+nav .nav-links a {
+    margin-left: 35px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.65); /* Sedikit redup saat tidak aktif */
+    transition: color 0.3s ease;
+    font-size: 15px;
+    font-weight: 400;
+    position: relative;
+    padding: 5px 0;
+}
+
+/* Efek garis bawah animasi saat menu di-hover atau aktif */
+nav .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #00f2fe, #4facfe);
+    transition: width 0.3s ease;
+}
+
+nav .nav-links a:hover::after,
+nav .nav-links a.active::after {
+    width: 100%;
+}
+
+nav .nav-links a:hover,
+nav .nav-links a.active {
+    color: #00f2fe; /* Menyala biru cyan terang saat aktif */
+}
+
+/* Tombol Hamburger (Tersembunyi di Desktop) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.menu-toggle .bar {
+    height: 2px;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* --- MAIN LAYOUT GRID --- */
+main {
+    flex: 1;
+    width: 100%;
+    max-width: 1140px;
+    margin: 100px auto 0 auto; /* Margin top agar tidak tertutup navbar fixed */
+    padding: 30px 6% 60px 6%;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 30px;
+    align-items: start;
+}
+
+/* Container Section Flat Transparan Premium */
+section {
+    background: rgba(255, 255, 255, 0.07);
+    padding: 40px 30px;
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background 0.2s ease;
+}
+
+section:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+h2 {
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #ffffff;
+    font-size: 26px;
+    letter-spacing: 0.5px;
+}
+
+p {
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 15px;
+}
+
+/* Form Controls */
+.form-row-parallel {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Input Number Styling */
+input[type="number"] {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.15);
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input[type="number"]:focus {
+    border-color: #00bce4;
+}
+
+/* Gender Selector Custom */
+.gender-card-group {
+    display: flex;
+    gap: 12px;
+}
+
+.gender-card-label {
+    flex: 1;
+    position: relative;
+    cursor: pointer;
+}
+
+.gender-card-label input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.gender-card-custom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 13px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.2s ease;
+}
+
+.gender-card-label:hover .gender-card-custom {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+}
+
+.gender-card-label input[type="radio"]:checked + .gender-card-custom {
+    background: #00bce4;
+    border-color: #00bce4;
+    color: #ffffff;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 188, 228, 0.2);
+}
+
+.gender-card-custom::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transition: transform 0.2s, background 0.2s;
+}
+
+.gender-card-label input[type="radio"]:checked + .gender-card-custom::before {
+    background: #ffffff;
+    transform: scale(1.4);
+}
+
+/* Buttons Styling */
+.btn-container {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.navigation-container {
+    margin-top: 15px;
+    display: flex;
+}
+
+.btn {
+    flex: 1;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease, transform 0.1s;
+    font-size: 15px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn-primary {
+    background: #00bce4;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #00a8cc;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.btn-outline-dashboard {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-outline-dashboard:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Result Area */
+.result-box {
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 5px solid rgba(255, 255, 255, 0.3);
+    padding: 30px 25px;
+    border-radius: 20px;
+    margin-bottom: 25px;
+    min-height: 125px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.result-bmi {
+    font-size: 42px;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+.result-status {
+    font-size: 18px;
+    margin-top: 8px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Bar Status WHO */
+.who-scale {
+    margin-top: 25px;
+}
+.scale-title {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 8px;
+    font-weight: 400;
+}
+.scale-bar {
+    display: flex;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 6px;
+}
+.bar-segment { flex: 1; }
+.bg-under { background: #ffc107; }
+.bg-ideal { background: #28a745; }
+.bg-over { background: #fd7e14; }
+.bg-obese { background: #dc3545; }
+
+.scale-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 13px;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    margin-top: 40px;
+}
+
+/* --- MEDIA QUERIES (RESPONSIVE) --- */
+@media(max-width: 900px) {
+    main {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        margin-top: 80px;
+    }
+    section {
+        padding: 35px 25px;
+    }
+}
+
+@media(max-width: 768px) {
+    /* Konfigurasi Navbar di HP */
+    nav { 
+        padding: 15px 6%; 
+    }
+
+    .menu-toggle {
+        display: flex; /* Memunculkan Hamburger Menu di HP */
+    }
+
+    /* Animasi Hamburger Menjadi Simbol X */
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Mengubah susunan menu horizontal menjadi Menu Slide-In Samping */
+    nav .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Sembunyi sebelum diklik */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 75%;
+        height: 100vh;
+        background: rgba(18, 38, 74, 0.96);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        gap: 35px;
+        transition: right 0.4s cubic-bezier(0.85, 0, 0.15, 1);
+        box-shadow: -10px 0 30px rgba(0,0,0,0.3);
+        padding: 0;
+    }
+
+    nav .nav-links.active {
+        right: 0;
+    }
+
+    nav .nav-links a {
+        margin-left: 0;
+        font-size: 20px;
+    }
+}
+
+@media(max-width: 600px) {
+    .form-row-parallel {
+        flex-direction: column;
+        gap: 0;
+    }
+    .gender-card-group {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .btn-container {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .navigation-container {
+        margin-top: 12px;
+    }
+}
